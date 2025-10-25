@@ -28,7 +28,7 @@ export default function Contact() {
         {/* 🔹 ฟอร์มติดต่อ */}
         <form
           className="flex flex-col space-y-5"
-          action="https://formsubmit.co/t88585547@email.com"
+          action="https://formspree.io/f/mdkpnbzb"
           method="POST"
         >
           <div>
@@ -65,7 +65,10 @@ export default function Contact() {
           </div>
 
           <motion.button
-            whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(34,211,238,0.6)" }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 0 25px rgba(34,211,238,0.6)",
+            }}
             whileTap={{ scale: 0.98 }}
             type="submit"
             className="w-full py-3 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 font-semibold shadow-lg transition-all"

@@ -6,7 +6,7 @@ export default function Footer() {
       </p>
       <div className="flex justify-center gap-4 mt-2">
         <a
-          href="https://github.com/"
+          href="https://github.com/t88585547-ui"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-gray-300 transition-colors duration-200"
@@ -14,7 +14,7 @@ export default function Footer() {
           GitHub
         </a>
         <a
-          href="https://twitter.com/"
+          href="https://x.com/TANONGS36564502"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-gray-300 transition-colors duration-200"
@@ -22,7 +22,7 @@ export default function Footer() {
           Twitter
         </a>
         <a
-          href="mailto:example@email.com"
+          href="mailto:t88585547@gmail.com"
           className="hover:text-gray-300 transition-colors duration-200"
         >
           Contact
