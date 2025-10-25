@@ -3,7 +3,7 @@ import { FaGithub, FaTwitter, FaEnvelope } from "react-icons/fa";
 
 export default function Contact() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-white px-6 py-20 overflow-hidden bg-gradient-to-b from-[#0a0a0a] via-[#0f0f0f] to-[#050505]">
+    <section className="relative min-h-screen flex items-center justify-center text-white px-6 py-20 ">
       {/* 🔹 เอฟเฟกต์แสงเบา ๆ */}
       {/* <motion.div
         className="absolute top-1/2 left-1/2 w-[500px] h-[500px] -translate-x-1/2 -translate-y-1/2 bg-cyan-500/20 blur-[120px] rounded-full"
