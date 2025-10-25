@@ -10,69 +10,30 @@ export default function StarryNightBackground() {
     let height = (canvas.height = window.innerHeight);
     let animationFrameId;
 
-    // 🌟 สร้างดาว
-    const stars = Array.from({ length: 300 }).map(() => ({
+    // 🌟 ดาว
+    const stars = Array.from({ length: 250 }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      r: Math.random() * 1.5,
-      alpha: 0.5 + Math.random() * 0.5,
-      speed: Math.random() * 0.05,
+      r: Math.random() * 1.3,
+      alpha: 0.4 + Math.random() * 0.6,
+      speed: Math.random() * 0.04,
     }));
 
-    // ☄️ สร้างดาวหาง
-    const comets = Array.from({ length: 6 }).map(() => ({
+    // ☄️ ดาวหาง
+    const comets = Array.from({ length: 5 }).map(() => ({
       x: Math.random() * -width * 0.5,
-      y: Math.random() * height * 0.3,
-      length: 300 + Math.random() * 200,
-      speed: 4 + Math.random() * 3,
-      size: 3 + Math.random() * 2,
+      y: Math.random() * height * 0.4,
+      length: 250 + Math.random() * 150,
+      speed: 3 + Math.random() * 2,
+      size: 2 + Math.random() * 1.5,
       trail: [],
       hue: Math.random() * 360,
     }));
 
-    // 🌫️ หมอกบาง ๆ
-    function drawFog() {
-      const gradient = ctx.createRadialGradient(
-        width / 2,
-        height / 2,
-        0,
-        width / 2,
-        height / 2,
-        width / 1.2
-      );
-      gradient.addColorStop(0, "rgba(0, 30, 60, 0.4)");
-      gradient.addColorStop(1, "rgba(0, 0, 10, 0.9)");
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, width, height);
-    }
-
-    // 🌙 ดวงจันทร์
-    function drawMoon() {
-      const moonX = width * 0.8;
-      const moonY = height * 0.2;
-      const gradient = ctx.createRadialGradient(
-        moonX,
-        moonY,
-        20,
-        moonX,
-        moonY,
-        100
-      );
-      gradient.addColorStop(0, "rgba(255,255,230,0.95)");
-      gradient.addColorStop(1, "rgba(255,255,230,0.05)");
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(moonX, moonY, 60, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    // 🌟 ดาวระยิบระยับ
+    // 🌌 วาดพื้นหลังและดาว
     function drawStars() {
-      ctx.fillStyle = "#010114";
+      ctx.fillStyle = "#01010a";
       ctx.fillRect(0, 0, width, height);
-
-      drawFog();
-      drawMoon();
 
       stars.forEach((s) => {
         ctx.globalAlpha = s.alpha;
@@ -81,7 +42,7 @@ export default function StarryNightBackground() {
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fill();
 
-        // กระพริบเบา ๆ
+        // เอฟเฟกต์กระพริบ
         s.alpha += s.speed * (Math.random() > 0.5 ? 1 : -1);
         if (s.alpha < 0.2) s.alpha = 0.2;
         if (s.alpha > 1) s.alpha = 1;
@@ -89,11 +50,11 @@ export default function StarryNightBackground() {
       ctx.globalAlpha = 1;
     }
 
-    // ☄️ ดาวหาง
+    // ☄️ วาดดาวหาง
     function drawComets() {
       comets.forEach((comet) => {
         comet.trail.push({ x: comet.x, y: comet.y });
-        if (comet.trail.length > 80) comet.trail.shift();
+        if (comet.trail.length > 60) comet.trail.shift();
 
         const gradient = ctx.createLinearGradient(
           comet.x - comet.length * 1.2,
@@ -114,8 +75,8 @@ export default function StarryNightBackground() {
 
         ctx.strokeStyle = gradient;
         ctx.lineWidth = comet.size;
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = `hsla(${comet.hue}, 100%, 70%, 0.8)`;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `hsla(${comet.hue}, 100%, 70%, 0.7)`;
 
         ctx.beginPath();
         ctx.moveTo(comet.trail[0].x, comet.trail[0].y);
@@ -131,19 +92,20 @@ export default function StarryNightBackground() {
         comet.x += comet.speed;
         comet.y += comet.speed * 0.4;
 
-        if (comet.x > width + 300 || comet.y > height + 300) {
+        // รีเซ็ตเมื่อออกจอ
+        if (comet.x > width + 200 || comet.y > height + 200) {
           comet.x = Math.random() * -width * 0.5;
-          comet.y = Math.random() * height * 0.3;
-          comet.length = 300 + Math.random() * 200;
-          comet.speed = 4 + Math.random() * 3;
-          comet.size = 3 + Math.random() * 2;
+          comet.y = Math.random() * height * 0.4;
+          comet.length = 250 + Math.random() * 150;
+          comet.speed = 3 + Math.random() * 2;
+          comet.size = 2 + Math.random() * 1.5;
           comet.hue = Math.random() * 360;
           comet.trail = [];
         }
       });
     }
 
-    // 🎬 วนแอนิเมชัน
+    // 🎬 วนภาพเคลื่อนไหว
     function animate() {
       drawStars();
       drawComets();
