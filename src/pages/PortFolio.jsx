@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import PortFolioGallery from "../assets/canvas.png";
 import PixelPortfolio from "../assets/Screenshot from 2025-10-17 21-57-18.png";
 import AnimationPortfolio from "../assets/canvas2.png";
+import SpacebgPortfolio from "../assets/swappy-20251025_161411.png"
 
 const myProjects = [
   {
@@ -28,6 +29,15 @@ const myProjects = [
     liveUrl: "https://portfolio-project-1-gamma.vercel.app/",
     repoUrl: "https://github.com/t88585547-ui",
   },
+  {
+    title: "Space Background",
+    description: "Portfolio แบบ พื้นหลังอวกาศ",
+    imageUrl: SpacebgPortfolio,
+    tags: ["React", "Tailwind CSS", "JavaScript"],
+    liveUrl: "https://portfoliospace-background-8amr.vercel.app/",
+    repoUrl: "https://github.com/t88585547-ui/PortfoliospaceBackground.git"
+
+  }
 ];
 
 export default function Projects() {
@@ -37,7 +47,7 @@ export default function Projects() {
       {/* <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/60 backdrop-blur-[2px] " /> */}
 
       {/* แสงกระจาย */}
-      <motion.div
+      {/* <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-cyan-500/20 blur-[160px] rounded-full"
         animate={{
           scale: [1, 1.05, 1],
@@ -48,7 +58,7 @@ export default function Projects() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-      />
+      /> */}
 
       <div className="container relative z-10 mx-auto px-4">
         {/* Title */}

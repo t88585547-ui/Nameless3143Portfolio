@@ -5,10 +5,10 @@ export default function Contact() {
   return (
     <section className="relative min-h-screen flex items-center justify-center text-white px-6 py-20 overflow-hidden">
       {/* ชั้นมืดโปร่งใส */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
+      {/* <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" /> */}
 
       {/* เอฟเฟกต์แสงฟ้าเบื้องหลัง */}
-      <motion.div
+      {/* <motion.div
         className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-cyan-500/30 blur-[180px] rounded-full"
         animate={{
           scale: [1, 1.1, 1],
@@ -19,7 +19,7 @@ export default function Contact() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-      />
+      /> */}
 
       {/* กล่องฟอร์มหลัก */}
       <motion.div
@@ -47,7 +47,7 @@ export default function Contact() {
           </p>
 
           {/* ฟอร์ม */}
-          <form className="flex flex-col space-y-5">
+          <form className="flex flex-col space-y-5" action="https://formsubmit.co/t88585547@email.com" method="POST">
             <div>
               <label className="block text-sm mb-1">ชื่อของคุณ</label>
               <input
@@ -93,7 +93,7 @@ export default function Contact() {
             className="mt-10 flex justify-center gap-8 text-3xl"
           >
             <a
-              href="https://github.com/"
+              href="https://github.com/t88585547-ui?tab=overview&from=2025-09-01&to=2025-09-30"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-cyan-400 transition-transform transform hover:scale-110"
@@ -101,23 +101,23 @@ export default function Contact() {
               <FaGithub />
             </a>
             <a
-              href="https://twitter.com/"
+              href="https://x.com/TANONGS36564502"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-cyan-400 transition-transform transform hover:scale-110"
             >
               <FaTwitter />
             </a>
-            <a
+            {/* <a
               href="https://discord.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-cyan-400 transition-transform transform hover:scale-110"
             >
               <FaDiscord />
-            </a>
+            </a> */}
             <a
-              href="mailto:you@example.com"
+              href="t88585547@gmail.com"
               className="hover:text-cyan-400 transition-transform transform hover:scale-110"
             >
               <FaEnvelope />

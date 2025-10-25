@@ -9,7 +9,7 @@ export default function Home() {
       {/* <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 backdrop-blur-[2px]" /> */}
 
       {/* เอฟเฟกต์แสงฟ้าเบื้องหลัง */}
-      <motion.div
+      {/* <motion.div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-cyan-500/20 blur-[180px] rounded-full"
         animate={{
           scale: [1, 1.1, 1],
@@ -20,7 +20,7 @@ export default function Home() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-      />
+      /> */}
 
       {/* Hero Section */}
       <motion.div

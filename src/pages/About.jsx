@@ -14,12 +14,12 @@ export default function About() {
   return (
     <section className="min-h-screen text-white px-8 py-24 flex flex-col gap-32 relative overflow-hidden">
       {/* เอฟเฟกต์แสงพื้นหลัง */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/60" />
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/60" />
       <motion.div
         className="absolute top-1/2 left-1/2 w-[800px] h-[800px] -translate-x-1/2 bg-pink-500/20 blur-[150px] rounded-full"
         animate={{ scale: [1, 1.05, 1], opacity: [0.4, 0.6, 0.4] }}
         transition={{ duration: 6, repeat: Infinity }}
-      />
+      /> */}
 
       {/* ส่วน About Me */}
       <div className="flex flex-col md:flex-row items-center justify-center md:gap-16 relative z-10">
