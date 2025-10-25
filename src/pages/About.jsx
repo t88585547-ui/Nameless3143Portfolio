@@ -14,11 +14,11 @@ export default function About() {
   return (
     <section className="relative min-h-screen text-white px-6 md:px-12 py-24 flex flex-col gap-28 overflow-hidden bg-gradient-to-b from-[#0a0a0a] via-[#0d0d0d] to-[#050505]">
       {/* 🔹 เอฟเฟกต์พื้นหลังแสงเบา */}
-      <motion.div
+      {/* <motion.div
         className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 bg-pink-500/20 blur-[100px] rounded-full"
         animate={{ scale: [1, 1.05, 1], opacity: [0.4, 0.6, 0.4] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
+      /> */}
 
       {/* ========== ABOUT ME ========== */}
       <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20 relative z-10">

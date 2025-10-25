@@ -43,7 +43,7 @@ export default function Services() {
   return (
     <section className="relative text-white px-6 py-24 overflow-hidden">
       {/* 🔮 พื้นหลังเรืองแสงเบา ๆ แบบ optimized */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70" />
+      {/* <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70" /> */}
       <motion.div
         className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-pink-500/20 blur-[150px] rounded-full"
         animate={{ scale: [1, 1.05, 1], opacity: [0.4, 0.6, 0.4] }}
