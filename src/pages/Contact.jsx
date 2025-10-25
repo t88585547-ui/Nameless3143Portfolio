@@ -1,128 +1,110 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaTwitter, FaDiscord, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaTwitter, FaEnvelope } from "react-icons/fa";
 
 export default function Contact() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-white px-6 py-20 overflow-hidden">
-      {/* ชั้นมืดโปร่งใส */}
-      {/* <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" /> */}
-
-      {/* เอฟเฟกต์แสงฟ้าเบื้องหลัง */}
-      {/* <motion.div
-        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-cyan-500/30 blur-[180px] rounded-full"
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.6, 0.9, 0.6],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      /> */}
-
-      {/* กล่องฟอร์มหลัก */}
+    <section className="relative min-h-screen flex items-center justify-center text-white px-6 py-20 overflow-hidden bg-gradient-to-b from-[#0a0a0a] via-[#0f0f0f] to-[#050505]">
+      {/* 🔹 เอฟเฟกต์แสงเบา ๆ */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        className="absolute top-1/2 left-1/2 w-[500px] h-[500px] -translate-x-1/2 -translate-y-1/2 bg-cyan-500/20 blur-[120px] rounded-full"
+        animate={{ scale: [1, 1.05, 1], opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* 🔹 กล่องหลัก */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        className="relative z-10 max-w-2xl w-full p-10 rounded-3xl bg-white/10 backdrop-blur-xl border border-cyan-400/30 shadow-[0_0_50px_rgba(34,211,238,0.3)]"
+        transition={{ duration: 1 }}
+        className="relative z-10 max-w-2xl w-full p-10 rounded-3xl bg-white/10 backdrop-blur-xl border border-cyan-400/20 shadow-[0_0_40px_rgba(34,211,238,0.2)]"
       >
-        {/* ลอยเบา ๆ */}
-        <motion.div
-          animate={{
-            y: [0, -10, 0],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+        <h2 className="text-4xl font-bold text-center mb-2 drop-shadow-lg">
+          ติดต่อฉัน
+        </h2>
+        <p className="text-center text-gray-300 mb-8">
+          มีไอเดียหรือโปรเจกต์ที่อยากร่วมงาน? ส่งข้อความหาฉันได้เลย 💬
+        </p>
+
+        {/* 🔹 ฟอร์มติดต่อ */}
+        <form
+          className="flex flex-col space-y-5"
+          action="https://formsubmit.co/t88585547@email.com"
+          method="POST"
         >
-          <h2 className="text-4xl font-bold text-center mb-2 drop-shadow-lg">
-            ติดต่อฉัน
-          </h2>
-          <p className="text-center text-gray-300 mb-8">
-            อยากร่วมงานหรือพูดคุยกัน? ส่งข้อความถึงฉันได้เลย 💫
-          </p>
+          <div>
+            <label className="block text-sm mb-1">ชื่อของคุณ</label>
+            <input
+              type="text"
+              required
+              name="name"
+              className="w-full px-5 py-3 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              placeholder="กรอกชื่อของคุณ..."
+            />
+          </div>
 
-          {/* ฟอร์ม */}
-          <form className="flex flex-col space-y-5" action="https://formsubmit.co/t88585547@email.com" method="POST">
-            <div>
-              <label className="block text-sm mb-1">ชื่อของคุณ</label>
-              <input
-                type="text"
-                className="w-full px-5 py-3 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                placeholder="กรอกชื่อของคุณ..."
-              />
-            </div>
+          <div>
+            <label className="block text-sm mb-1">อีเมล</label>
+            <input
+              type="email"
+              required
+              name="email"
+              className="w-full px-5 py-3 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              placeholder="you@example.com"
+            />
+          </div>
 
-            <div>
-              <label className="block text-sm mb-1">อีเมล</label>
-              <input
-                type="email"
-                className="w-full px-5 py-3 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                placeholder="you@example.com"
-              />
-            </div>
+          <div>
+            <label className="block text-sm mb-1">ข้อความ</label>
+            <textarea
+              rows="5"
+              required
+              name="message"
+              className="w-full px-5 py-3 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              placeholder="อยากจะบอกอะไรฉันไหม..."
+            ></textarea>
+          </div>
 
-            <div>
-              <label className="block text-sm mb-1">ข้อความ</label>
-              <textarea
-                rows="5"
-                className="w-full px-5 py-3 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                placeholder="อยากจะบอกอะไรฉันไหม..."
-              ></textarea>
-            </div>
-
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(34,211,238,0.6)" }}
-              whileTap={{ scale: 0.98 }}
-              type="submit"
-              className="w-full py-3 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 font-semibold shadow-lg transition-all"
-            >
-              ส่งข้อความ
-            </motion.button>
-          </form>
-
-          {/* Social icons */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 1 }}
-            className="mt-10 flex justify-center gap-8 text-3xl"
+          <motion.button
+            whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(34,211,238,0.6)" }}
+            whileTap={{ scale: 0.98 }}
+            type="submit"
+            className="w-full py-3 rounded-lg bg-gradient-to-r from-cyan-400 to-blue-500 font-semibold shadow-lg transition-all"
           >
-            <a
-              href="https://github.com/t88585547-ui?tab=overview&from=2025-09-01&to=2025-09-30"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-cyan-400 transition-transform transform hover:scale-110"
-            >
-              <FaGithub />
-            </a>
-            <a
-              href="https://x.com/TANONGS36564502"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-cyan-400 transition-transform transform hover:scale-110"
-            >
-              <FaTwitter />
-            </a>
-            {/* <a
-              href="https://discord.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-cyan-400 transition-transform transform hover:scale-110"
-            >
-              <FaDiscord />
-            </a> */}
-            <a
-              href="t88585547@gmail.com"
-              className="hover:text-cyan-400 transition-transform transform hover:scale-110"
-            >
-              <FaEnvelope />
-            </a>
-          </motion.div>
+            ส่งข้อความ
+          </motion.button>
+        </form>
+
+        {/* 🔹 ช่องทางติดต่อ / โซเชียล */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="mt-10 grid grid-cols-3 gap-6 justify-items-center text-3xl"
+        >
+          <a
+            href="https://github.com/t88585547-ui"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-cyan-400 transition-transform hover:scale-110"
+          >
+            <FaGithub />
+          </a>
+
+          <a
+            href="https://x.com/TANONGS36564502"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-cyan-400 transition-transform hover:scale-110"
+          >
+            <FaTwitter />
+          </a>
+
+          <a
+            href="mailto:t88585547@gmail.com"
+            className="hover:text-cyan-400 transition-transform hover:scale-110"
+          >
+            <FaEnvelope />
+          </a>
         </motion.div>
       </motion.div>
     </section>

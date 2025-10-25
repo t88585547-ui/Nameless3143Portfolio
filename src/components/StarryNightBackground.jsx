@@ -8,92 +8,131 @@ export default function StarryNightBackground() {
     const ctx = canvas.getContext("2d");
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
+    let animationFrameId;
 
-    const stars = Array.from({ length: 300 }).map(() => ({ // Increased stars for a denser look
+    // 🌟 สร้างดาว
+    const stars = Array.from({ length: 300 }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      r: Math.random() * 1.5, // Slightly larger stars
-      alpha: 0.5 + Math.random() * 0.5, // Brighter stars
-      speed: Math.random() * 0.05, // Slower twinkling
+      r: Math.random() * 1.5,
+      alpha: 0.5 + Math.random() * 0.5,
+      speed: Math.random() * 0.05,
     }));
 
-    const comets = Array.from({ length: 6 }).map(() => ({ // Fewer, more prominent comets
-      x: Math.random() * -width * 0.5, // Start further left
-      y: Math.random() * height * 0.3, // Start higher up
-      length: 300 + Math.random() * 200, // Longer comets
-      speed: 4 + Math.random() * 3, // Faster comets
-      size: 3 + Math.random() * 2, // Thicker comets
+    // ☄️ สร้างดาวหาง
+    const comets = Array.from({ length: 6 }).map(() => ({
+      x: Math.random() * -width * 0.5,
+      y: Math.random() * height * 0.3,
+      length: 300 + Math.random() * 200,
+      speed: 4 + Math.random() * 3,
+      size: 3 + Math.random() * 2,
       trail: [],
-      hue: Math.random() * 360, // Individual comet colors
+      hue: Math.random() * 360,
     }));
 
+    // 🌫️ หมอกบาง ๆ
+    function drawFog() {
+      const gradient = ctx.createRadialGradient(
+        width / 2,
+        height / 2,
+        0,
+        width / 2,
+        height / 2,
+        width / 1.2
+      );
+      gradient.addColorStop(0, "rgba(0, 30, 60, 0.4)");
+      gradient.addColorStop(1, "rgba(0, 0, 10, 0.9)");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+    }
+
+    // 🌙 ดวงจันทร์
+    function drawMoon() {
+      const moonX = width * 0.8;
+      const moonY = height * 0.2;
+      const gradient = ctx.createRadialGradient(
+        moonX,
+        moonY,
+        20,
+        moonX,
+        moonY,
+        100
+      );
+      gradient.addColorStop(0, "rgba(255,255,230,0.95)");
+      gradient.addColorStop(1, "rgba(255,255,230,0.05)");
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(moonX, moonY, 60, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 🌟 ดาวระยิบระยับ
     function drawStars() {
-      ctx.fillStyle = "#010114"; // Dark background
+      ctx.fillStyle = "#010114";
       ctx.fillRect(0, 0, width, height);
 
-      ctx.fillStyle = "white";
+      drawFog();
+      drawMoon();
+
       stars.forEach((s) => {
         ctx.globalAlpha = s.alpha;
+        ctx.fillStyle = "white";
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fill();
 
-        // Simple twinkling effect
+        // กระพริบเบา ๆ
         s.alpha += s.speed * (Math.random() > 0.5 ? 1 : -1);
         if (s.alpha < 0.2) s.alpha = 0.2;
         if (s.alpha > 1) s.alpha = 1;
       });
+      ctx.globalAlpha = 1;
     }
 
+    // ☄️ ดาวหาง
     function drawComets() {
       comets.forEach((comet) => {
-        // Push current position to trail
         comet.trail.push({ x: comet.x, y: comet.y });
-        // Keep trail length consistent
-        if (comet.trail.length > 80) comet.trail.shift(); // Longer trail
+        if (comet.trail.length > 80) comet.trail.shift();
 
-        // Create a dynamic gradient for the comet
         const gradient = ctx.createLinearGradient(
-          comet.x - comet.length * 1.2, // Start gradient further back
+          comet.x - comet.length * 1.2,
           comet.y - comet.length * 0.4,
           comet.x,
           comet.y
         );
 
-        // Use HSL for dynamic color
         const color1 = `hsla(${comet.hue}, 100%, 70%, 0)`;
         const color2 = `hsla(${comet.hue}, 100%, 70%, 0.4)`;
-        const color3 = `hsla(${comet.hue + 30}, 100%, 80%, 0.8)`; // Slightly different color for head
-        const color4 = `hsla(${comet.hue + 60}, 100%, 90%, 1)`; // Brightest head
+        const color3 = `hsla(${comet.hue + 30}, 100%, 80%, 0.8)`;
+        const color4 = `hsla(${comet.hue + 60}, 100%, 90%, 1)`;
 
-        gradient.addColorStop(0, color1); // Faded tail end
+        gradient.addColorStop(0, color1);
         gradient.addColorStop(0.6, color2);
         gradient.addColorStop(0.8, color3);
-        gradient.addColorStop(1, color4); // Brightest head
+        gradient.addColorStop(1, color4);
 
         ctx.strokeStyle = gradient;
         ctx.lineWidth = comet.size;
-        ctx.shadowBlur = 20; // Increased blur for glow
-        ctx.shadowColor = `hsla(${comet.hue}, 100%, 70%, 0.8)`; // Shadow color matching comet
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = `hsla(${comet.hue}, 100%, 70%, 0.8)`;
+
         ctx.beginPath();
-        ctx.moveTo(comet.trail[0].x, comet.trail[0].y); // Start from the beginning of the trail
+        ctx.moveTo(comet.trail[0].x, comet.trail[0].y);
         ctx.lineTo(comet.x, comet.y);
         ctx.stroke();
-        ctx.shadowBlur = 0; // Reset shadow blur
 
-        // Draw the main body of the comet
+        ctx.shadowBlur = 0;
         ctx.fillStyle = `hsla(${comet.hue}, 100%, 95%, 1)`;
         ctx.beginPath();
-        ctx.arc(comet.x, comet.y, comet.size / 2 + 1, 0, Math.PI * 2); // Brighter head
+        ctx.arc(comet.x, comet.y, comet.size / 2 + 1, 0, Math.PI * 2);
         ctx.fill();
 
-        // Move diagonally down-right
         comet.x += comet.speed;
-        comet.y += comet.speed * 0.4; // Adjusted y-speed for a more natural angle
+        comet.y += comet.speed * 0.4;
 
-        // Reset when off screen
         if (comet.x > width + 300 || comet.y > height + 300) {
-          comet.x = Math.random() * -width * 0.5; // Reset further back
+          comet.x = Math.random() * -width * 0.5;
           comet.y = Math.random() * height * 0.3;
           comet.length = 300 + Math.random() * 200;
           comet.speed = 4 + Math.random() * 3;
@@ -104,18 +143,27 @@ export default function StarryNightBackground() {
       });
     }
 
+    // 🎬 วนแอนิเมชัน
     function animate() {
       drawStars();
       drawComets();
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     }
 
     animate();
 
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-    });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // 🧹 Cleanup
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (

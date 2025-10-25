@@ -41,13 +41,18 @@ export default function Services() {
   ];
 
   return (
-    <section className="relative text-white px-8 py-24 overflow-hidden">
-      {/* 🔮 พื้นหลังไล่สีเรืองแสง */}
+    <section className="relative text-white px-6 py-24 overflow-hidden">
+      {/* 🔮 พื้นหลังเรืองแสงเบา ๆ แบบ optimized */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70" />
       <motion.div
-        className="absolute top-1/2 left-1/2 w-[900px] h-[900px] -translate-x-1/2 bg-purple-500/20 blur-[180px] rounded-full"
-        animate={{ scale: [1, 1.05, 1], opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 7, repeat: Infinity }}
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-pink-500/20 blur-[150px] rounded-full"
+        animate={{ scale: [1, 1.05, 1], opacity: [0.4, 0.6, 0.4] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-cyan-400/20 blur-[120px] rounded-full"
+        animate={{ scale: [1, 1.08, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* ====== Services Section ====== */}
@@ -55,11 +60,12 @@ export default function Services() {
         <motion.h2
           initial={{ opacity: 0, y: -40 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="text-4xl md:text-5xl font-extrabold mb-6"
         >
           My{" "}
-          <span className="bg-gradient-to-r from-pink-500 via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(236,72,153,0.3)]">
+          <span className="bg-gradient-to-r from-pink-500 via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(236,72,153,0.3)]">
             Services
           </span>
         </motion.h2>
@@ -67,6 +73,7 @@ export default function Services() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-gray-300 mb-16 text-lg max-w-2xl mx-auto"
         >
@@ -74,40 +81,29 @@ export default function Services() {
           เพื่อช่วยให้ธุรกิจของคุณเติบโตบนโลกดิจิทัล 🌍
         </motion.p>
 
-        {/* Cards */}
+        {/* Service Cards */}
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{
-                duration: 0.8,
-                delay: index * 0.2,
+                duration: 0.6,
+                delay: index * 0.15,
                 type: "spring",
                 stiffness: 70,
               }}
-              whileHover={{
-                scale: 1.07,
-                rotate: [0, 1, -1, 0],
-                transition: { duration: 0.6, ease: "easeInOut" },
-              }}
-              className="relative p-8 rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/0 hover:border-pink-500 transition-all duration-500"
+              className="relative p-8 rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent hover:border-pink-500/40 hover:shadow-[0_0_25px_rgba(236,72,153,0.25)] transition-all duration-500"
             >
-              {/* แสงวิ่งผ่าน */}
-              <div className="absolute inset-0 rounded-2xl overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-1000" />
-
-              <div className="relative z-10">
-                <div className="text-6xl mb-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-semibold mb-4 text-pink-400">
-                  {service.title}
-                </h3>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
+              <div className="text-6xl mb-4">{service.icon}</div>
+              <h3 className="text-2xl font-semibold mb-4 text-pink-400">
+                {service.title}
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                {service.description}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -118,6 +114,7 @@ export default function Services() {
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-4xl md:text-5xl font-extrabold mb-8"
         >
@@ -137,12 +134,9 @@ export default function Services() {
               key={index}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.8 }}
-              whileHover={{
-                scale: 1.05,
-                transition: { duration: 0.4, ease: "easeInOut" },
-              }}
-              className="p-8 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm hover:border-cyan-400/40 hover:shadow-[0_0_30px_rgba(34,211,238,0.25)] transition-all"
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2, duration: 0.6 }}
+              className="p-8 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm hover:border-cyan-400/40 hover:shadow-[0_0_25px_rgba(34,211,238,0.25)] transition-all duration-500"
             >
               <div className="text-5xl mb-4">{reason.icon}</div>
               <h3 className="text-xl font-semibold mb-3 text-cyan-300">
